@@ -1,3 +1,4 @@
+
 name: CI - build and test
 
 on:
@@ -12,10 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GRGIT_USER: ${{ secrets.GITHUB_TOKEN }}
+      GRGIT_USER: ${{ github.actor }}
+      GRGIT_PASS: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
